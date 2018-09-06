@@ -51,5 +51,18 @@ void kload(void) {
 	kreport("PIT initialization successful!", "kload()", 1);
 	pgeinit();
 	kreport("Paging successfully initialized!", "kload()", 3);
+	
+	// REQUIRED INFORMATION FOR THE GNU GPL TO APPLY
+	
+	puts("\nNOTICE:", 0xF0);
+	puts("\nThis is a simple kernel/operating system.\n", 0x0F);
+	puts("Copyright (C) 2018 NunoLava1998\n", 0x0F);
+	puts("This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.\n", 0x0F);
+	puts("This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n", 0x0F);
+	puts("You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.\n", 0x0F);
+	puts("If needed, please contact me at my GitHub account \"NunoLava1998\"\n", 0x0F);
+	
+	// End.
+	
 	for(;;);
 }
