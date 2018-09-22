@@ -64,7 +64,9 @@ void kload(void) {
 	
 	// "Welcome to Ringfire!" message
 	
-	puts("Welcome to Ringfire OS.", 0x0F);
+	puts("Welcome ", 0x04);
+	puts("to Ringfire", 0x06);
+	puts(" OS.", 0x0C);
 	
 	for(;;);
 }
