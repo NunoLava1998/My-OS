@@ -62,7 +62,9 @@ void kload(void) {
 	puts("You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.\n", 0x0F);
 	puts("If needed, please contact me at my GitHub account \"NunoLava1998\"\n", 0x0F);
 	
-	// End.
+	// "Welcome to Ringfire!" message
+	
+	puts("Welcome to Ringfire OS.", 0x0F);
 	
 	for(;;);
 }
