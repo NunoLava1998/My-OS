@@ -22,6 +22,7 @@ volatile uint8_t vy;
 void _SCROLL_(void);
 void putc(char, uint8_t);
 void puts(const char*, uint8_t);
+void cls(void);
 
 void gdtinit(void);
 void idtinit(void);
@@ -33,7 +34,5 @@ void outb(uint16_t, uint8_t);
 volatile uint64_t SYSTICKS;
 void pit_irq(void);
 void sleep(uint64_t);
-
-void pgeinit(void);
 
 #endif
