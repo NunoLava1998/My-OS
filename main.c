@@ -1,5 +1,15 @@
 #include "main.h"
 
+static void putsd(const char* s, uint64_t delay, uint8_t c) {
+	size_t sz = 0;
+	while(s[sz])
+		sz++;
+	for (size_t tring = 0; tring < sz; tring++) {
+		sleep(delay);
+		putc(s[tring], c);
+	}
+}
+
 void kreport(const char* msg, const char* src, int intensity) {
 	// msg: Message to be displayed
 	// src: File name
@@ -38,22 +48,7 @@ void kreport(const char* msg, const char* src, int intensity) {
 	puts("\n", 0x0F);
 }
 
-void kload(void) {
-	vx = 0; vy = 0; memset((void*)0xB8000, 0, 4000);
-	gdtinit();
-	kreport("GDT initialization successful!", "kload()", 2);
-	idtinit();
-	kreport("IDT initialization successful!", "kload()", 2);
-	picinit();
-	kreport("PIC initialization successful!", "kload()", 2);
-	asm("sti");
-	sleep(1); // Sleeps for 1 millisecond
-	kreport("PIT initialization successful!", "kload()", 1);
-	pgeinit();
-	kreport("Paging successfully initialized!", "kload()", 3);
-	
-	// REQUIRED INFORMATION FOR THE GNU GPL TO APPLY
-	
+void gnumsg(void) {
 	puts("\nNOTICE:", 0xF0);
 	puts("\nRingfire OS\n", 0x0F);
 	puts("Copyright (C) 2018 NunoLava1998\n", 0x0F);
@@ -61,12 +56,23 @@ void kload(void) {
 	puts("This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n", 0x0F);
 	puts("You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>.\n", 0x0F);
 	puts("If needed, please contact me at my GitHub account \"NunoLava1998\"\n", 0x0F);
-	
-	// "Welcome to Ringfire!" message
-	
-	puts("Welcome ", 0x04);
-	puts("to Ringfire", 0x06);
-	puts(" OS.", 0x0C);
-	
+}
+
+void kstart(void) {
+	const char* this = "kstart()";
+	cls();
+	gdtinit();
+	kreport("GDT initialization successful!", this, 2);
+	idtinit();
+	kreport("IDT initialization successful!", this, 2);
+	picinit();
+	kreport("PIC initialization successful!", this, 2);
+	STI();
+	kreport("PIT initialization successful!", this, 1);
+}
+
+void kload(void) {
+	kstart(); cls(); gnumsg();
+	putsd("\n\nWelcome to Ringfire.", 25, 0x0F);
 	for(;;);
 }
