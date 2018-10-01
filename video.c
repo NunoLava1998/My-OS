@@ -21,6 +21,10 @@ void _SCROLL_(void) {
 	memcpy((void*)0xB8000, (void*)(sbl + 160), 3840);
 }
 
+void cls(void) {
+	vx = 0; vy = 0; memset((void*)0xB8000, 0, 4000);
+}
+
 void putc(char ch, uint8_t cl) {
 	
 	// Warning: Using a goto in C is highly discouraged.
