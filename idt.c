@@ -85,7 +85,7 @@ void isr6(void) {
 
 void isr7(void) {
 	isr_start();
-	isr_handler(0);
+	isr_handler(7);
 	isr_end();
 }
 
